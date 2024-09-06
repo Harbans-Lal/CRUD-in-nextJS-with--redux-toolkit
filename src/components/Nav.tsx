@@ -85,6 +85,7 @@ const router = useRouter();
     localStorage.removeItem('role')
     router.push('/login')
   }
+
   return (
     <div className={styles.root}>
        <Tooltip content="" relationship="label">
@@ -105,7 +106,7 @@ const router = useRouter();
           >
             Profile
           </AppItem>
-
+          
           <Link  href={`/${role}/home`}>
             <NavItem icon={<ImageSearchRegular fontSize={20} />} value="1">
              Home

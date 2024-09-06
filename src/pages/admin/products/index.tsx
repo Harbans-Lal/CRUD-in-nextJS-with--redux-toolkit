@@ -12,7 +12,7 @@ import EditProduct from '@/components/EditProduct';
    
   const products = useSelector((state: any) => state.products);
   const {status} = products;
-    console.log(products , "updated stat >>>>>>>")
+ 
     
       // useEffect(() =>{
       //   dispatch(fetchProducts())

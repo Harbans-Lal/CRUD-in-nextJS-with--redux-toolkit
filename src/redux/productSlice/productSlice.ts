@@ -43,7 +43,7 @@ export const deleteProduct = createAsyncThunk<number, number>(
   }
 );
 
-
+//add new product
 export const addProduct = createAsyncThunk<Product, Product>(
   'products/addProduct',
   async (product) => {
@@ -57,7 +57,7 @@ export const addProduct = createAsyncThunk<Product, Product>(
   }
 );
 
-
+//update the product
 export const updateProduct = createAsyncThunk<Product, { id: number; updates: EditProduct }>(
   'products/updateProduct',
   async ({ id, updates }) => {
@@ -70,6 +70,7 @@ export const updateProduct = createAsyncThunk<Product, { id: number; updates: Ed
     return data;
   }
 );
+
 
 
 // Slice for products

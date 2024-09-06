@@ -1,9 +1,13 @@
+
 import * as React from "react";
 import { makeStyles, useId, Input, Label ,Button} from "@fluentui/react-components";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { string, object } from 'yup';
 import { yupResolver } from "@hookform/resolvers/yup";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const useStyles = makeStyles({
   root: {
@@ -43,6 +47,7 @@ const useStyles = makeStyles({
 
 
   const handleLogin =  (data:any) =>{
+
     fetch('https://dummyjson.com/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -52,16 +57,20 @@ const useStyles = makeStyles({
       })
     })
     .then(res => {
-      console.log(res, "res in login form>>>>>>>>>>>>>>>>>>")
           if(res?.ok){
+          toast.success("successfully login")
             return res.json()
+            
           }
     })
     .then(val =>{
       console.log(val,"api data>>>>>>>>>>>>>>>>")
       localStorage.setItem("dummyToken",JSON.stringify(val.token))
     })
-    .catch(err => console.log('..............m',err))
+    .catch(err => {
+      toast.warn('invalid credential')
+      console.log(err)
+    })
    }
 
   const checkRole = (role:string) =>{
@@ -73,6 +82,7 @@ const useStyles = makeStyles({
   }
   React.useEffect(()=>{
     let token = JSON.parse(localStorage.getItem('dummyToken'));
+    
     if(!token){
       router.push('/login')
     }else{
@@ -106,6 +116,7 @@ const useStyles = makeStyles({
     <>
       {toggle?
          <form onSubmit={handleSubmit(handleLogin)}  noValidate autoComplete="off" className={styles.root}>
+        
            <div>
             <Label htmlFor={userName}>User Name</Label>
             <Input type="text" placeholder="johndoe" id={userName}
@@ -158,7 +169,7 @@ const useStyles = makeStyles({
        
       }
        
-
+      <ToastContainer />
       
     </>
    

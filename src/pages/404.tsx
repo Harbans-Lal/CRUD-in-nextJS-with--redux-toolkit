@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
   return <div className='flex justify-center items-center gap-5 mt-7 flex-col'>
       <h1>Not found – 404!</h1>
       <div>
-        <Button className='text-xl text-sky-400' onClick={()=> router.push('/login')} >Go back to Home</Button>
+        <Button className='text-xl text-sky-400' onClick={()=> router.push('/')} >Go back to Home</Button>
       </div>
   </div>
 }
